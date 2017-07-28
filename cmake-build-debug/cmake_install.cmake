@@ -1,4 +1,4 @@
-# Install script for directory: /Users/rustem/CLionProjects/pushauth
+# Install script for directory: /Users/rustem/Sites/Code/pushauth-cpp-app-main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/rustem/CLionProjects/pushauth/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/rustem/Sites/Code/pushauth-cpp-app-main/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

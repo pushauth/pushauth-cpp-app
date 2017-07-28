@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/rustem/CLionProjects/pushauth/main.cpp" "/Users/rustem/CLionProjects/pushauth/cmake-build-debug/CMakeFiles/pushauth.dir/main.cpp.o"
+  "/Users/rustem/Sites/Code/pushauth-cpp-app-main/main.cpp" "/Users/rustem/Sites/Code/pushauth-cpp-app-main/cmake-build-debug/CMakeFiles/pushauth.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
