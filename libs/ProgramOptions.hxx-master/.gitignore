@@ -1,0 +1,6 @@
+.vscode/*
+bin/*
+bin_noexcept/*
+*.cppcheck
+*.sublime-project
+*.sublime-workspace

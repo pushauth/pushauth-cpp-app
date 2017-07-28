@@ -1,0 +1,117 @@
+language: cpp
+
+dist: trusty
+sudo: required
+
+notifications:
+  email: false
+
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+      env: COMPILER=g++-4.9
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env: COMPILER=g++-5
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      env: COMPILER=g++-6
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - clang-3.6
+            - libc++-dev
+            - libc++abi-dev
+      env:
+        - COMPILER=clang++-3.6
+        - CMAKE_FLAGS="-DCMAKE_CXX_FLAGS=-stdlib=libc++ -DCMAKE_EXE_LINKER_FLAGS=-lc++"
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.7
+          packages:
+            - clang-3.7
+            - libc++-dev
+            - libc++abi-dev
+      env:
+        - COMPILER=clang++-3.7
+        - CMAKE_FLAGS="-DCMAKE_CXX_FLAGS=-stdlib=libc++ -DCMAKE_EXE_LINKER_FLAGS=-lc++"
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.8
+          packages:
+            - clang-3.8
+            - libc++-dev
+            - libc++abi-dev
+      env:
+        - COMPILER=clang++-3.8
+        - CMAKE_FLAGS="-DCMAKE_CXX_FLAGS=-stdlib=libc++ -DCMAKE_EXE_LINKER_FLAGS=-lc++"
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-3.9
+          packages:
+            - clang-3.9
+            - libc++-dev
+            - libc++abi-dev
+      env:
+        - COMPILER=clang++-3.9
+        - CMAKE_FLAGS="-DCMAKE_CXX_FLAGS=-stdlib=libc++ -DCMAKE_EXE_LINKER_FLAGS=-lc++"
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - clang-4.0
+            - libc++-dev
+            - libc++abi-dev
+      env:
+        - COMPILER=clang++-4.0
+        - CMAKE_FLAGS="-DCMAKE_CXX_FLAGS=-stdlib=libc++ -DCMAKE_EXE_LINKER_FLAGS=-lc++"
+
+script:
+  - uname -a
+  - cmake --version
+  - $COMPILER --version
+
+  - mkdir bin_noexcept
+  - cd bin_noexcept
+  - cmake .. $CMAKE_FLAGS -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_CXX_COMPILER=$COMPILER -DPROGRAMOPTIONS_BUILD_TEST=OFF -DPROGRAMOPTIONS_NO_EXCEPTIONS=ON
+  - cmake --build .
+  - cd ..
+
+  - mkdir bin
+  - cd bin
+  - cmake .. $CMAKE_FLAGS -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_CXX_COMPILER=$COMPILER
+  - cmake --build .
+
+  - ./Test
